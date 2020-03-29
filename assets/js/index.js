@@ -4,7 +4,7 @@ function getData() {
 		xhttp.onreadystatechange = function() {
 		  if (this.readyState == 4 && this.status == 200) {
 			var getData = JSON.parse(this.responseText);
-			<!-- console.log(getData); -->
+			//  console.log(getData);
 			local_total_cases = getData.data.local_total_cases;
 			local_new_cases = getData.data.local_new_cases;
 			local_total_number_of_individuals_in_hospitals = getData.data.local_total_number_of_individuals_in_hospitals;
@@ -17,21 +17,22 @@ function getData() {
 			global_new_deaths = getData.data.global_new_deaths;
 			global_recovered = getData.data.global_recovered;
 			
-			document.getElementById("local_total_cases").innerHTML = local_total_cases;
-			document.getElementById("local_new_cases").innerHTML = local_new_cases;
-			document.getElementById("local_total_number_of_individuals_in_hospitals").innerHTML = local_total_number_of_individuals_in_hospitals;
-			document.getElementById("local_deaths").innerHTML = local_deaths;
-			document.getElementById("local_recovered").innerHTML = local_recovered;
+
+			document.getElementById("local_total_cases").innerHTML = numberWithCommas(local_total_cases);
+			document.getElementById("local_new_cases").innerHTML = numberWithCommas(local_new_cases);
+			document.getElementById("local_total_number_of_individuals_in_hospitals").innerHTML = numberWithCommas(local_total_number_of_individuals_in_hospitals);
+			document.getElementById("local_deaths").innerHTML = numberWithCommas(local_deaths);
+			document.getElementById("local_recovered").innerHTML = numberWithCommas(local_recovered);
 			document.getElementById("lastUpdatedTime1").innerHTML = "Latest Update: " + update_date_time;
 			document.getElementById("lastUpdatedTime2").innerHTML = "Latest Update: " + update_date_time;
 			document.getElementById("lastUpdatedTime3").innerHTML = "Latest Update: " + update_date_time;
 			document.getElementById("lastUpdatedTime4").innerHTML = "Latest Update: " + update_date_time;
 			document.getElementById("lastUpdatedTime5").innerHTML = "Latest Update: " + update_date_time;
-			document.getElementById("global_new_cases").innerHTML = global_new_cases;
-			document.getElementById("global_total_cases").innerHTML = global_total_cases;
-			document.getElementById("global_deaths").innerHTML = global_deaths;
-			document.getElementById("global_new_deaths").innerHTML = global_new_deaths;
-			document.getElementById("global_recovered").innerHTML = global_recovered;
+			document.getElementById("global_new_cases").innerHTML = numberWithCommas(global_new_cases);
+			document.getElementById("global_total_cases").innerHTML = numberWithCommas(global_total_cases);
+			document.getElementById("global_deaths").innerHTML = numberWithCommas(global_deaths);
+			document.getElementById("global_new_deaths").innerHTML = numberWithCommas(global_new_deaths);
+			document.getElementById("global_recovered").innerHTML = numberWithCommas(global_recovered);
 			document.getElementById("lastUpdatedTime6").innerHTML = "Latest Update: " + update_date_time;
 			document.getElementById("lastUpdatedTime7").innerHTML = "Latest Update: " + update_date_time;
 			document.getElementById("lastUpdatedTime8").innerHTML = "Latest Update: " + update_date_time;
@@ -48,13 +49,16 @@ function getData() {
 		xhttp.send("");
 	}
 	
+	function numberWithCommas(x) {
+		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
 	
 	function displayCurrentTime() {
 	  today = new Date();
 	  var date =
-		today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+		today.getFullYear() + "-" + ('0'+(today.getMonth() + 1)).slice(-2) + "-" + today.getDate();
 	  var time =
-		today.getHours() + ":" + today.getMinutes();
+		('0'+today.getHours()).slice(-2) + ":" + ('0'+today.getMinutes()).slice(-2);
 	  dateTime = date + " " + time;
 	  // console.log(dateTime);
 	  document.getElementById("currentTime").innerHTML = "Sri Lanka  " + dateTime;
