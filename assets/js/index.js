@@ -38,6 +38,8 @@ function getData() {
 			document.getElementById("lastUpdatedTime8").innerHTML = "Latest Update: " + update_date_time;
 			document.getElementById("lastUpdatedTime9").innerHTML = "Latest Update: " + update_date_time;
 			document.getElementById("lastUpdatedTime10").innerHTML = "Latest Update: " + update_date_time;
+			
+			document.getElementById("sldeaths").innerHTML = "Sri Lanka has recorded " + numberWithCommas(local_deaths) + " deaths due to corona virus";
 		  }
 		};
 		xhttp.open(
